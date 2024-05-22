@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import todosReducer from '../features/todos/todoSlice'
 import filtersReducer from '../features/filters/filtersSlice'
 
-const syncToLocalStorageMiddleware = state => next => action => {
+const syncToLocalStorageMiddleware = (state:any) => (next:any) => (action:any) => {
   const result = next(action)
   localStorage.setItem('filters', state.getState().filters)
   localStorage.setItem('todos', JSON.stringify(state.getState().todos))
