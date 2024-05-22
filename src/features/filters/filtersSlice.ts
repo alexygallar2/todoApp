@@ -8,7 +8,10 @@ export const TODO_FILTERS = {
 
 export type FilterValue = typeof TODO_FILTERS[keyof typeof TODO_FILTERS]
 
-const initialState: FilterValue = TODO_FILTERS.ACTIVE
+const initialState: FilterValue = (() => {
+  const storedFilter = localStorage.getItem('filters') as FilterValue
+  return storedFilter ? storedFilter : TODO_FILTERS.ALL
+})()
 
 const filterSlice = createSlice({
   name: 'filter',

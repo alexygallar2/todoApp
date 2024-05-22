@@ -6,11 +6,10 @@ export type Todo = {
     completed: boolean
 }
 
-const initialState: Todo[] = [
-    { id: "adadasd", text: 'Learn React', completed: false },
-    { id: "a434f", text: 'Learn Redux', completed: false },
-    { id: "sdfsf33", text: 'Build something fun!', completed: false },
-]
+const initialState: Todo[] = (() => {
+  const storedTodos = localStorage.getItem('todos')
+  return storedTodos ? JSON.parse(storedTodos) : []
+})()
 
 const todosSlice = createSlice({
   name: 'todos',
